@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 public class RSAHelper {
 
@@ -11,8 +12,9 @@ public class RSAHelper {
     private long d;
 
     public RSAHelper() {
-        p = Utils.generatePrime(10000);
-        q = Utils.generatePrime(p + 1);
+        long maxLong = 3037000499L;
+        p = Utils.generatePrime(10000, maxLong);
+        q = Utils.generatePrime(p + 1, maxLong);
         n = p * q;
         phin = (p - 1) * (q - 1);
 
@@ -46,6 +48,21 @@ public class RSAHelper {
         List<Integer> plainText = new ArrayList<Integer>();
         for (Long x : ciphers) {
             plainText.add(decrypt(x));
+        }
+        return plainText;
+    }
+
+    public String decrypt(String ciphers) {
+        List<Long> listCiphers = new ArrayList<Long>();
+        StringTokenizer st = new StringTokenizer(ciphers, " ");
+        while (st.hasMoreTokens()) {
+            String cipher = st.nextToken();
+            listCiphers.add(Long.parseLong(cipher));
+        }
+        List<Integer> listPlains = decrypt(listCiphers);
+        String plainText = "";
+        for (int c : listPlains) {
+            plainText += (char)c;
         }
         return plainText;
     }

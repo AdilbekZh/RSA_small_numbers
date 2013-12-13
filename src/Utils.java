@@ -104,16 +104,16 @@ public class Utils {
     /**
      *
      * @param a
-     * @param b
+     * @param mod
      * @return
      */
-    public static long modReverse(long a, long b) {
-        long b0 = b;
+    public static long modReverse(long a, long mod) {
+        long b0 = mod;
         long x0 = 0, x1 = 1;
         while (a > 1) {
-            long q = a / b;
-            long t = b;
-            b = a % b;
+            long q = a / mod;
+            long t = mod;
+            mod = a % mod;
             a = t;
             t = x0;
             x0 = x1 - q * x0;
@@ -123,6 +123,14 @@ public class Utils {
             x1 += b0;
         return x1;
     }
+
+    /**
+     * Binary exponentiation by module
+     * @param a base
+     * @param n exponent
+     * @param mod module
+     * @return
+     */
 
     public static long modPow(long a, long n, long mod) {
         if (n == 0)
