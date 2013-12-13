@@ -8,13 +8,13 @@ public class RSAHelper {
     public long n;
     public long phin;
     public long e;
-    public long d;
+    private long d;
 
     public RSAHelper() {
         p = Utils.generatePrime(10000);
         q = Utils.generatePrime(p + 1);
-        n = 1L * p * q;
-        phin = 1L * (p - 1) * (q - 1);
+        n = p * q;
+        phin = (p - 1) * (q - 1);
 
         while (true) {
             e = (long) (Math.random() * phin);
@@ -23,7 +23,7 @@ public class RSAHelper {
             }
         }
         d = Utils.modReverse(e, phin);
-        System.out.println("d*e = "  + ((d*e) % phin));
+        System.out.println("d*e = " + ((d * e) % phin));
     }
 
     public long encrypt(long b) {
@@ -38,19 +38,20 @@ public class RSAHelper {
         return listEncrypt;
     }
 
-    public long decrypt(long b) {
-        return Utils.modPow(b, d, n);
-    }
-    public String decrypt(List<Long> ciphers){
-        String s = "";
-        for (Long x : ciphers) {
-            s += decrypt(x)+" ";
-        }
-        return s;
+    public int decrypt(long b) {
+        return (int)Utils.modPow(b, d, n);
     }
 
-    public String toString(){
-        String s =  "p = " + p + ", q = " + q + ", n = " + n + ", phi(n) = " + phin + ", e = " + e + ", d = " + d;
+    public List<Integer> decrypt(List<Long> ciphers) {
+        List<Integer> plainText = new ArrayList<Integer>();
+        for (Long x : ciphers) {
+            plainText.add(decrypt(x));
+        }
+        return plainText;
+    }
+
+    public String toString() {
+        String s = "p = " + p + ", q = " + q + ", n = " + n + ", phi(n) = " + phin + ", e = " + e + ", d = " + d;
         return s;
     }
 
