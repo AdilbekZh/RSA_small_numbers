@@ -6,8 +6,9 @@ public class Utils {
      * Generate prime number, bigger than start, if not exist return -1
      * If number smaller than 1e8 than sqrt algorithm will be used,
      * otherwise will be used Miller Rabin Primality Test
+     *
      * @param start starting point
-     * @param end end point
+     * @param end   end point
      * @return prime number if found, else -1
      */
     public static long generatePrime(long start, long end) {
@@ -26,6 +27,7 @@ public class Utils {
     /**
      * Sqrt algorithm to find prime number
      * Work time O(sqrt(n))
+     *
      * @param n number to check
      * @return true, false
      */
@@ -56,7 +58,8 @@ public class Utils {
      * if n = n − 1 then do next WitnessLoop
      * return composite
      * return probably prime
-     * @param n number to check
+     *
+     * @param n     number to check
      * @param round iterations of algorithm
      * @return true, false
      */
@@ -88,6 +91,7 @@ public class Utils {
     /**
      * Greatest common divisor using Euclid algorithm
      * Worktime O(log(n))
+     *
      * @param a first number
      * @param b second number
      * @return gcd of a and b
@@ -102,10 +106,10 @@ public class Utils {
     }
 
     /**
-     *
-     * @param a
-     * @param mod
-     * @return
+     * module reverse using extended euclid algorithm
+     * @param a first number
+     * @param mod module
+     * @return reverse number of a (a^-1)
      */
     public static long modReverse(long a, long mod) {
         long b0 = mod;
@@ -126,8 +130,9 @@ public class Utils {
 
     /**
      * Binary exponentiation by module
-     * @param a base
-     * @param n exponent
+     *
+     * @param a   base
+     * @param n   exponent
      * @param mod module
      * @return
      */

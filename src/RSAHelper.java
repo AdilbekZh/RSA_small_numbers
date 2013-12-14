@@ -13,7 +13,9 @@ public class RSAHelper {
 
     public RSAHelper() {
         long maxLong = 3037000499L;
-        p = Utils.generatePrime(10000, maxLong);
+        long start = (long) (Math.random() * (maxLong - 10000));
+        start += 5000;
+        p = Utils.generatePrime(start, maxLong);
         q = Utils.generatePrime(p + 1, maxLong);
         n = p * q;
         phin = (p - 1) * (q - 1);
@@ -25,7 +27,6 @@ public class RSAHelper {
             }
         }
         d = Utils.modReverse(e, phin);
-        System.out.println("d*e = " + ((d * e) % phin));
     }
 
     public long encrypt(long b) {
@@ -41,7 +42,7 @@ public class RSAHelper {
     }
 
     public int decrypt(long b) {
-        return (int)Utils.modPow(b, d, n);
+        return (int) Utils.modPow(b, d, n);
     }
 
     public List<Integer> decrypt(List<Long> ciphers) {
@@ -62,7 +63,7 @@ public class RSAHelper {
         List<Integer> listPlains = decrypt(listCiphers);
         String plainText = "";
         for (int c : listPlains) {
-            plainText += (char)c;
+            plainText += (char) c;
         }
         return plainText;
     }

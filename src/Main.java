@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class Main implements ActionListener{
+public class Main implements ActionListener {
 
     JFrame frame;
     JPanel panel;
@@ -17,7 +17,7 @@ public class Main implements ActionListener{
 
     RSAHelper rsa;
 
-    public Main () {
+    public Main() {
         frame = new JFrame("RSA encrypt/decrypt");
         frame.setVisible(true);
         frame.setSize(600, 400);
@@ -31,11 +31,11 @@ public class Main implements ActionListener{
         btn0 = new JButton("Encrypt");
         btn1 = new JButton("Decrypt");
         textArea0 = new JTextArea("", 10, 10);
-        textArea1 = new JTextArea("",10, 10);
+        textArea1 = new JTextArea("", 10, 10);
         textArea0.setLineWrap(true);
         textArea1.setLineWrap(true);
-
-
+        textArea0.setBorder(BorderFactory.createLineBorder(Color.black));
+        textArea1.setBorder(BorderFactory.createLineBorder(Color.black));
 
         btn0.addActionListener(this);
         btn1.addActionListener(this);
@@ -52,7 +52,7 @@ public class Main implements ActionListener{
 
 
         frame.add(panel);
-
+        frame.repaint();
         rsa = new RSAHelper();
     }
 
@@ -76,27 +76,6 @@ public class Main implements ActionListener{
 
     public static void main(String[] args) {
         new Main();
-        System.out.println((long)Math.sqrt(Long.MAX_VALUE));
-        if (true) return;
-        /*Scanner in = new Scanner(System.in);
-
-        System.out.println(rsa.toString());
-        System.out.print("Enter message: ");
-        String s = in.nextLine();
-        List<Long> encrypted = rsa.encrypt(s);
-        String cipherText = "";
-        for (Long x : encrypted) {
-            cipherText += x + " ";
-        }
-        System.out.println("\nPlaintext: " + Arrays.toString(s.getBytes()));
-        System.out.println("Encoded: " + cipherText);
-        List<Integer> decrypted = rsa.decrypt(encrypted);
-        String plainText = "";
-        for (int x : decrypted) {
-            plainText += (char)x;
-        }
-        System.out.println("Decrypted: " + plainText);
-    */
     }
 
 }
